@@ -8,7 +8,7 @@ use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
 
 // Authentication Routes
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::get('/login', action: [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
@@ -31,7 +31,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/items/{item}/toggle-status', [ItemController::class, 'toggleStatus'])->name('items.toggle-status');
 });
 
-// Redirect root to dashboard
-Route::redirect('/', '/dashboard');
+Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 
 Route::get('/items/export/{type}', [ItemController::class, 'export'])->name('items.export');
