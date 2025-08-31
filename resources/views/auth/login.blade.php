@@ -550,7 +550,9 @@
             </form>
 
             <div class="auth-footer">
-                <p>Don't have an account? <a href="#" class="auth-link" id="show-register">Sign Up</a></p>
+                <p>Don't have an account?
+                    <a href="{{ route('register') }}" class="auth-link" id="show-register">Sign Up</a>
+                </p>
                 <p><a href="#" class="auth-link">Forgot your password?</a></p>
             </div>
         </div>
@@ -663,26 +665,6 @@
             setupPasswordToggle();
             setupFormSubmission();
 
-            // Add 3D tilt effect to login card
-            const card = document.querySelector('.login-card');
-            if (card) {
-                card.addEventListener('mousemove', (e) => {
-                    const x = e.clientX - card.getBoundingClientRect().left;
-                    const y = e.clientY - card.getBoundingClientRect().top;
-
-                    const centerX = card.offsetWidth / 2;
-                    const centerY = card.offsetHeight / 2;
-
-                    const rotateY = (x - centerX) / 25;
-                    const rotateX = (centerY - y) / 25;
-
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-                });
-            }
         });
     </script>
 </body>
